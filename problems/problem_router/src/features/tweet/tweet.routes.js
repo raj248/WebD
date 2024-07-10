@@ -11,7 +11,7 @@ const router = express.Router();
 
 // Write your code here
 
-router.get('/',getTweets);
-router.post('/',createTweet);
+router.get("/",getTweets);
+router.post("/",createTweet);
 
 export default router;

@@ -2,7 +2,7 @@
 // Import the necessary modules here
 // Write your code here
 
-import { fetchAllProducts } from "../model/product.model.js";
+import { fetchAllProducts, rateProductModel } from "../model/product.model.js";
 
 export const getAllProducts = (req, res, next) => {
   const products = fetchAllProducts();
@@ -15,5 +15,15 @@ export const addProduct = (req, res, next) => {
   res.json({ success: true, msg: "addProduct working" });
 };
 export const rateProduct = (req, res, next) => {
-  // Write your code here
+  const { userId, productId, rating } = req.query;
+  // console.log(userId, productId, rating);
+  if (rating < 0 || rating > 5) {
+    res
+      .status(401)
+      .json({ success: false, msg: "rating should be b/w 0 and 5" });
+    return;
+  }
+  const modelResp = rateProductModel(productId, userId, rating);
+  if (modelResp.status) res.json({ success: true, product: modelResp.res });
+  else res.status(401).json({ success: false, msg: modelResp.res });
 };
