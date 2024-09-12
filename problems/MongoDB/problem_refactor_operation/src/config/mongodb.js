@@ -1,6 +1,3 @@
-// Please don't change the pre-written code
-// Import the necessary modules here
-
 import { MongoClient } from "mongodb";
 import dotenv from "dotenv";
 dotenv.config();
@@ -11,23 +8,21 @@ const baseUrl = process.env.MONGODB || "0.0.0.0:27017";
 export async function connectToMongoDB() {
   try {
     const clientInstance = await MongoClient.connect(
-      `mongodb://${baseUrl}/confession`,
+      `mongodb://${baseUrl}/bucketlist`,
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       }
     );
     client = clientInstance;
+    console.log("Connected to database:", clientInstance.s.url);
   } catch (err) {
     console.log("Error in connecting with mongo");
   }
 }
 
 export const getDB = () => {
-  // Write your code here
-  // Implement this function to return the instance of the 'confession' database.
-  const db = client.db("confessions");
-  return db;
+  return client.db("db_name");
 };
 
 export const closeMongoDBConnection = async () => {
