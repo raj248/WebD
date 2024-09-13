@@ -1,0 +1,9 @@
+Objectives
+
+i) Integrate update functionality to modify tags in expenses. A sample object for an expense is: { "title": "Lunch at Joe's", "amount": 15.0, "date": "new Date().toISOString()", "isRecurring": false, "tags": ["food", "lunch"] } To update a tag, use the route: PUT("/update/tag/:id") where "id" is the object ID of the expense document in the MongoDB database passed as the parameter value. Use the following JSON content as the request body: { "oldTag": "food", "newTag": "game" } This will replace the old tag 'food' in the sample object with 'game'. The expected output will look like: { "title": "Lunch at Joe's", "amount": 15.0, "date": "new Date().toISOString()", "isRecurring": false, "tags": ["game", "lunch"] }
+
+ii) Implement the ability to delete a specific tag from expenses. To delete a tag, use the route: DELETE(/api/expenses/delete/tags/:id?tag=lunch) where "id" is the object ID of the expense document in the MongoDB database passed as the parameter value, and the tag name is passed as a query parameter. The expected output after deleting the 'lunch' tag from the sample expense will be: { "title": "Lunch at Joe's", "amount": 15.0, "date": "new Date().toISOString()", "isRecurring": false, "tags": ["game"] }
+
+iii) Utilize MongoDB and Node.js, focusing on optimizing with the pull operator.
+Notes:
+1. You only need to make changes in the repository file. There is no need to change the prewritten code. 2. Consider the structure of the existing expenses and tags in the database. 3. Research how to apply the pull operator to update or delete specific elements within an array. 
